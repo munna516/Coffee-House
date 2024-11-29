@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -25,17 +24,6 @@ const Navbar = () => {
         to="/addCoffee"
       >
         Add-Coffee
-      </NavLink>
-
-      <NavLink
-        className={({ isActive }) =>
-          `text-xl flex items-center gap-2 mr-5 ${
-            isActive ? "btn btn-accent text-white" : ""
-          }`
-        }
-        to="/updateCoffee"
-      >
-        Update-Coffee
       </NavLink>
     </>
   );

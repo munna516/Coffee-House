@@ -1,13 +1,58 @@
-import React from "react";
+import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UpdateCoffee = () => {
+  const coffee = useLoaderData();
+  console.log(coffee);
+  const { _id, name, chef, supplier, taste, category, details, photo } = coffee;
+
   const handleUpdateCoffee = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const chef = form.chef.value;
+    const supplier = form.supplier.value;
+    const details = form.details.value;
+    const category = form.category.value;
+    const taste = form.taste.value;
+    const photo = form.photo.value;
+
+    const updateCoffee = {
+      name,
+      chef,
+      supplier,
+      taste,
+      category,
+      details,
+      photo,
+    };
+    fetch(`http://localhost:5000/coffees/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateCoffee),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            title: "Success!",
+            text: "coffee updated Successfully",
+            icon: "success",
+            confirmButtonText: "Ok",
+          });
+        }
+      });
   };
+
   return (
     <>
-      <div className="bg-[#f2ebd6] my-10 p-5 md:p-28">
-        <h1 className="text-3xl font-bold text-center mb-5">Update Coffee :</h1>
+      <div className="bg-[#f2ebd6] p-5 md:p-28">
+        <h1 className="text-3xl font-bold text-center mb-5">
+          Update Coffee : {name}
+        </h1>
 
         <form onSubmit={handleUpdateCoffee}>
           {/* First Row Name and chef */}
@@ -20,6 +65,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="name"
+                  defaultValue={name}
                   placeholder="coffee name"
                   className="input input-bordered "
                 />
@@ -33,6 +79,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="chef"
+                  defaultValue={chef}
                   placeholder="chef"
                   className="input input-bordered "
                 />
@@ -50,6 +97,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="supplier"
+                  defaultValue={supplier}
                   placeholder="supplier name"
                   className="input input-bordered "
                 />
@@ -63,6 +111,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="taste"
+                  defaultValue={taste}
                   placeholder="coffeee taste"
                   className="input input-bordered "
                 />
@@ -80,6 +129,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="category"
+                  defaultValue={category}
                   placeholder="category name"
                   className="input input-bordered "
                 />
@@ -93,6 +143,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="details"
+                  defaultValue={details}
                   placeholder="coffeee details"
                   className="input input-bordered "
                 />
@@ -109,6 +160,7 @@ const UpdateCoffee = () => {
                 <input
                   type="text"
                   name="photo"
+                  defaultValue={photo}
                   placeholder="photo url"
                   className="input input-bordered "
                 />
@@ -118,7 +170,7 @@ const UpdateCoffee = () => {
 
           <input
             type="submit"
-            className="w-full btn btn-accent"
+            className="w-full btn btn-neutral"
             value="Update Coffee"
           />
         </form>
