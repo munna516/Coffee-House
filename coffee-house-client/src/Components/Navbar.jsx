@@ -25,6 +25,16 @@ const Navbar = () => {
       >
         Add-Coffee
       </NavLink>
+      <NavLink
+        className={({ isActive }) =>
+          `text-xl flex items-center gap-2 mr-5 ${
+            isActive ? "btn btn-accent text-white" : ""
+          }`
+        }
+        to="/users"
+      >
+        Users
+      </NavLink>
     </>
   );
   return (
@@ -63,8 +73,27 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
-        <div className="navbar-end">
-          <Link className="btn ">Login</Link>
+        <div className="navbar-end gap-4 ">
+          <NavLink
+            to="/register"
+            className={({ isActive }) =>
+              `btn text-xl flex items-center  ${
+                isActive ? " btn-accent text-white" : ""
+              }`
+            }
+          >
+            Register
+          </NavLink>
+          <NavLink
+            to="/login"
+            className={({ isActive }) =>
+              `btn text-xl flex items-center  ${
+                isActive ? "btn-accent text-white" : ""
+              }`
+            }
+          >
+            Login
+          </NavLink>
         </div>
       </div>
     </>

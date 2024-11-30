@@ -3,7 +3,7 @@ import Swal from "sweetalert2";
 
 const UpdateCoffee = () => {
   const coffee = useLoaderData();
-  console.log(coffee);
+
   const { _id, name, chef, supplier, taste, category, details, photo } = coffee;
 
   const handleUpdateCoffee = (e) => {
@@ -35,7 +35,6 @@ const UpdateCoffee = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",
