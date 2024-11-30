@@ -18,7 +18,7 @@ const Register = () => {
       .then((result) => {
         const crediteAt = result.user?.metadata?.createdAt;
         const newUser = { email, name, crediteAt };
-        fetch("http://localhost:5000/users", {
+        fetch("https://coffee-store-server-eight-peach.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -26,14 +26,9 @@ const Register = () => {
           body: JSON.stringify(newUser),
         })
           .then((res) => res.json())
-          .then((data) => {
-           
-          });
-        
+          .then((data) => {});
       })
-      .catch((error) => {
-        
-      });
+      .catch((error) => {});
   };
   return (
     <div className="min-h-screen flex justify-center items-center mb-10">

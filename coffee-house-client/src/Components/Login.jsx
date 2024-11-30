@@ -11,13 +11,12 @@ const Login = () => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
-    
+
     signInUser(email, password)
       .then((result) => {
-        
         const lastSignInTime = result?.user?.metadata?.lastSignInTime;
         const loginInfo = { email, lastSignInTime };
-        fetch("http://localhost:5000/users", {
+        fetch("https://coffee-store-server-eight-peach.vercel.app/users", {
           method: "PATCH",
           headers: {
             "content-type": "application/json",
@@ -25,13 +24,9 @@ const Login = () => {
           body: JSON.stringify(loginInfo),
         })
           .then((res) => res.json())
-          .then((data) => {
-            
-          });
+          .then((data) => {});
       })
-      .catch((error) => {
-       
-      });
+      .catch((error) => {});
   };
   return (
     <>

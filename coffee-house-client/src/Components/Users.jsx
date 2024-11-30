@@ -18,9 +18,12 @@ const Users = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://coffee-store-server-eight-peach.vercel.app/users/${id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.deletedCount > 0) {
@@ -55,9 +58,8 @@ const Users = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {users.map((user, index) => (
+            {users.map((user) => (
               <tr key={user._id}>
-                <th>{index + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.crediteAt}</td>
