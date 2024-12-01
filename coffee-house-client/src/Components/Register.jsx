@@ -18,7 +18,7 @@ const Register = () => {
       .then((result) => {
         const crediteAt = result.user?.metadata?.createdAt;
         const newUser = { email, name, crediteAt };
-        fetch("https://coffee-store-server-eight-peach.vercel.app/users", {
+        fetch("https://coffee-house-server-one.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
